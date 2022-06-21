@@ -247,12 +247,7 @@ function recursiveXML($array, $counter=1 , $boolien1=false){
         }
         if (in_array($key,$target_equipment)) {
             /*  $global_data[] = array($key => ; */
-            if ($key == 'libelle') {
-                $global_data[$key] = (string)$child;
-            }else{
-
-            }
-             $global_data[$key] = (string)$child;
+            
         }
         if (count($child) > 0) {
             recursiveXML($child, $counter+1);
