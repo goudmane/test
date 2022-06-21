@@ -4,7 +4,7 @@
 include 'functions.php';
 set_time_limit(0);
 $mode = rqstprm('mode');
-
+$dd="44";
 
 
 $global_data=[];
