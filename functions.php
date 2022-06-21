@@ -119,7 +119,7 @@ function get_corespandant_col($str_label="")
 
 function main($partner_biens,$biens_result)
 {
-    global $global_query,$global_data,$global_counter,$mode;
+    global $global_query,$global_data,$global_counter,$mode,$chunks;
     $const= $global_counter;$current_query="";
     for ($i=$const; $i < count($partner_biens); $i++) {
         
@@ -127,18 +127,17 @@ function main($partner_biens,$biens_result)
         
         $Xmldetail = new SimpleXMLElement(requestXML(prepareURL('detail',$value)));
         /* $Xmlinfos = new SimpleXMLElement(requestXML(prepareURL('infos',$value))); */
-        recursiveXML($Xmldetail->detail ,1);
-        
+        recursiveXML($Xmldetail->detail,1);
         if (!findinsqlreqult($biens_result,$value)) {
             $current_query = build_sql("bien",$global_data,'insert') . "<br>";
         }else{
             $current_query = build_sql("bien",$global_data,'update') . "<br>";
         }
         
-        if($mode == "progress") echo  $global_counter . " / "  . count($partner_biens) . "<br>";
+        if($mode == "progress") echo  $global_counter+1 . " / "  . count($partner_biens) . "<br>";
         if($mode == "sql") echo  $current_query . "<br>";
         $global_counter++;
-        if ($i == $const+9) {
+        if ($i == $const+$chunks) {
             //echo "progress pass ".$i ;
             //$global_query = $current_query;
             //return $current_query;

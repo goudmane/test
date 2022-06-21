@@ -1,3 +1,8 @@
+
+CREATE DATABASE IF NOT EXISTS villanono;
+use villanono;
+
+
 -- ************************************** `Bien`
 
 CREATE TABLE `Bien`
